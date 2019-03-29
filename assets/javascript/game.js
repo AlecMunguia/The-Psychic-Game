@@ -9,6 +9,7 @@ var GuessesLeftText = document.getElementById('Guesses');
 var wins = 0;
 var losses = 0;
 var guesses = 10;
+var lettersGuessed = [];
 
 // create an array of letters for the computer to guess from
 var letterArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
@@ -28,19 +29,21 @@ var compGuess = letterArray[Math.floor(Math.random() * letterArray.length)];
 // if user guess does not equal computer guess subtract 1 from guesses
         }else{
             guesses--;
+            lettersGuessed.push(userGuess);
         }
 
 // if guesses equals 0 add 1 to losses reset guesses to 10 and reset computer guess
         if (guesses == 0){
             losses++;
             guesses = 10;
+            lettersGuessed = [];
             compGuess = letterArray[Math.floor(Math.random() * letterArray.length)];
         }
 
 // display user wins losses guesses left guesses so far
         winsText.textContent = "Wins: " + wins;
         lossesText.textContent = "Losses: " + losses;
-        GuessesSoFarText.textContent = "You guessed: " + userGuess;
+        GuessesSoFarText.textContent = "You guessed: " + lettersGuessed;
         GuessesLeftText.textContent = "Guesses left: " + guesses;
     }
 // console logs for testing
